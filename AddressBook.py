@@ -1,11 +1,9 @@
-
 """
 @Author: Tejaswini Shinde
-@Date: 2022-05-04 4:42
+@Date: 2022-05-04 16:42
 @Last Modified by: Tejaswini Shinde
-@Last Modified time: No
-@Title :Add contacts in Address book.
-
+@Last Modified time: 2022-05-05 15:41
+@Title :Edit contacts in Address book.
 """
 
 print("Welcome to Address Book")
@@ -26,8 +24,8 @@ def add_Contact():
          address = input("Enter the address: ")
          city = input("Enter city name: ")
          state = input("Enter state name: ")
-         zip = input("Enter zip code: ")
-         phone_number = input("Enter phone number: ")
+         zip = int(input("Enter zip code: "))
+         phone_number = int(input("Enter phone number: "))
          email = input("Enter email address: ")
          contact_obj = Contacts(first_name, last_name, address,city, state, zip, phone_number, email)
          return contact_obj
@@ -44,7 +42,7 @@ def Storing_contacts_in_list():
         while(True):
             contact_obj = add_Contact()
             contacts_list.append(contact_obj)
-            contacts_add_choice = input("Enter \"Yes\" for adding more & \"No\" to stop adding: ")
+            contacts_add_choice = input("Enter \"Y\" for adding more & \"N\" to stop adding: ")
             if (contacts_add_choice.upper() == "N"):
                 break
         return contacts_list        
