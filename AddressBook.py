@@ -10,35 +10,8 @@
 
 print("Welcome to Address Book")
 
-class Contacts:
-
-    def __init__(self, first_name, last_name, address, city, state, zip, phone_number, email):
-        """
-            Description:
-                Function is used getting values for object of AddressBook
-            Parameter:
-                Object with their specific data type
-            Return:
-                Updated Object as per our arguments
-        """
-        self.first_name = first_name
-        self.last_name = last_name
-        self.address = address
-        self.city = city
-        self.state = state
-        self.zip = zip
-        self.phone_number = phone_number
-        self.email = email
-
-
-    def __str__(self):
-        """
-            Description: To return textual content of the Contacts class Object
-            Parameters: Takes Instance (Object) of class as arguments
-            Returns: Returns String Representation of object, understandable by User
-        """
-        return "First Name is " + str(self.first_name)  +  " , Last name is "+ str(self.last_name)  +  " , Address is "+str(self.address) + " , City is "+str(self.city) + " , State is "+ str(self.state) + ", Zip code is "+ str(self.zip)+", Phone no is "+str(self.phone_number) + ", Email is "+ str(self.email)
-
+# Importing Contacts Class
+from contacts import Contacts
 
 def add_Contact():
 
@@ -47,16 +20,19 @@ def add_Contact():
         Parameters: None
         Returns: Returns Conatacts class object having all info
         """
-        first_name = input("Enter the first name: ")
-        last_name = input("Enter the last name: ")
-        address = input("Enter the address: ")
-        city = input("Enter city name: ")
-        state = input("Enter state name: ")
-        zip = input("Enter zip code: ")
-        phone_number = input("Enter phone number: ")
-        email = input("Enter email address: ")
-        contact_obj = Contacts(first_name, last_name, address,city, state, zip, phone_number, email)
-        return contact_obj
+        try:
+         first_name = input("Enter the first name: ")
+         last_name = input("Enter the last name: ")
+         address = input("Enter the address: ")
+         city = input("Enter city name: ")
+         state = input("Enter state name: ")
+         zip = input("Enter zip code: ")
+         phone_number = input("Enter phone number: ")
+         email = input("Enter email address: ")
+         contact_obj = Contacts(first_name, last_name, address,city, state, zip, phone_number, email)
+         return contact_obj
+        except Exception as ex:
+         print(ex)
 
 def Storing_contacts_in_list():
     """
@@ -64,17 +40,65 @@ def Storing_contacts_in_list():
         Parameters: None
         Returns: Returns a list containing objects of Contact Class that is taken form Console i.e. User
     """
-    while(True):
-        contact_obj = add_Contact()
-        contacts_list.append(contact_obj)
-        contacts_add_choice = input("Enter \"Y\" for adding more & \"N\" to stop adding: ")
-        if (contacts_add_choice.upper() == "N"):
-            break
-    return contacts_list        
+    try:
+        while(True):
+            contact_obj = add_Contact()
+            contacts_list.append(contact_obj)
+            contacts_add_choice = input("Enter \"Yes\" for adding more & \"No\" to stop adding: ")
+            if (contacts_add_choice.upper() == "N"):
+                break
+        return contacts_list        
+    except Exception as ex:
+        print(ex)
+        
+def Editing_contacts(con_list):
+    """
+        Description: Editing Contact Details form Console i.e. by user choice
+        Parameters: None
+        Returns: Returns a list containing objects of Contact Class that is taken form Console i.e. User
+    """
+    edited_person_name = input(
+        "Enter the name of person, whom details you want to edit: ").upper()
+    try:
+        for item in con_list:
+            if item.first_name.upper() == edited_person_name:
+                choice = input(
+                    "Enter choice u want to edit:\n 1 : FN,2 : LN,3 : Address,4 : City,5 : State,6 : ZIP,7 : Phone,8 : Email")
+                if (choice == "1"):
+                    fn = input("Enter updated first name: ")
+                    item.first_name = fn
+                elif (choice == "2"):
+                    ln = input("Enter updated last name: ")
+                    item.last_name = ln
+                elif (choice == "3"):
+                    addrs = input("Enter updated address: ")
+                    item.address = addrs
+                elif (choice == "4"):
+                    city = input("Enter updated city: ")
+                    item.city = city
+                elif (choice == "5"):
+                    state = input("Enter updated state: ")
+                    item.state = state
+                elif (choice == "6"):
+                    zip = input("Enter updated zip: ")
+                    item.zip = zip
+                elif (choice == "7"):
+                    phn_no = input("Enter updated phn number: ")
+                    item.phone_number = phn_no
+                elif (choice == "8"):
+                    email = input("Enter updated email: ")
+                    item.email = email
+                else:
+                    print("Invalid Choice")
+    except Exception as ex:
+        print(ex)         
 
 if __name__=="__main__":
 
- contacts_list = []
-Storing_contacts_in_list()
-for item in contacts_list:
+    contacts_list = []
+    Storing_contacts_in_list()
+    user_choice = input("Do u want to edit Contacts \"Y\" OR \"N\":").upper()
+    if (user_choice.upper() == "Y"):
+        Editing_contacts(contacts_list)
+    for item in contacts_list:
         print(str(item))
