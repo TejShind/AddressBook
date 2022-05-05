@@ -1,16 +1,17 @@
 
 """
 @Author: Tejaswini Shinde
-@Date: 2022-05-04 4:42
+@Date: 2022-05-04 3:42
 @Last Modified by: Tejaswini Shinde
 @Last Modified time: No
-@Title :Add contacts in Address book.
+@Title : Create contacts in Address book.
 
 """
 
 print("Welcome to Address Book")
 
 class Contacts:
+<<<<<<< Updated upstream
 
     def __init__(self, first_name, last_name, address, city, state, zip, phone_number, email):
         """
@@ -41,12 +42,19 @@ class Contacts:
 
 
 def add_Contact():
+=======
+>>>>>>> Stashed changes
 
+    def __init__(self, first_name, last_name, address, city, state, zip, phone, email):
         """
-        Description: Adding Contact Details form Console & returning that details as an object of Contacts Class
-        Parameters: None
-        Returns: Returns Conatacts class object having all info
+            Description:
+                Function is used getting values for object of AddressBook
+            Parameter:
+                Object with their specific data type
+            Return:
+                Updated Object as per our arguments
         """
+<<<<<<< Updated upstream
         first_name = input("Enter the first name: ")
         last_name = input("Enter the last name: ")
         address = input("Enter the address: ")
@@ -78,3 +86,27 @@ if __name__=="__main__":
 Storing_contacts_in_list()
 for item in contacts_list:
         print(str(item))
+=======
+        self.first_name = first_name
+        self.last_name = last_name
+        self.address = address
+        self.city = city
+        self.state = state
+        self.zip = zip
+        self.phone = phone
+        self.email = email
+
+
+    def __str__(self):
+        """
+            Description: To return textual content of the Contacts class Object
+            Parameters: Takes Instance (Object) of class as arguments
+            Returns: Returns String Representation of object, understandable by User
+        """
+        return "First Name is " + str(self.first_name)  +  " , Last name is "+ str(self.last_name)  +  " , Address is "+str(self.address) + " , City is "+str(self.city) + " , State is "+ str(self.state) + ", Zip code is "+ str(self.zip)+", Phone no is "+str(self.phone) + ", Email is "+ str(self.email)
+
+if __name__=="__main__":
+
+    contact1=Contacts("Tejaswini","Gholap","Hadpsar","Pune","Maharashtra",411028,823721985,"tej.gholap25@gmail")
+    print(contact1.__str__())
+>>>>>>> Stashed changes
