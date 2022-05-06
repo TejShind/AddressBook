@@ -3,15 +3,17 @@
 @Date: 2022-05-04 4:42
 @Last Modified by: Tejaswini Shinde
 @Last Modified time: No
-@Title :Edit contacts in Address book.
+@Title : Add multiple person in Address book.
 """
 
 print("Welcome to Address Book")
 
 # Importing Contacts Class
-from contact import Contacts
+from Contacts import Contacts
+class AddressBook:
 
-def add_Contact():
+
+    def add_Contact():
 
         """
         Description: Adding Contact Details form Console & returning that details as an object of Contacts Class
@@ -24,8 +26,8 @@ def add_Contact():
          address = input("Enter the address: ")
          city = input("Enter city name: ")
          state = input("Enter state name: ")
-         zip = input("Enter zip code: ")
-         phone_number = input("Enter phone number: ")
+         zip =int( input("Enter zip code: "))
+         phone_number = int(input("Enter phone number: "))
          email = input("Enter email address: ")
          contact_obj = Contacts(first_name, last_name, address,city, state, zip, phone_number, email)
          return contact_obj
@@ -40,8 +42,8 @@ def Storing_contacts_in_list():
     """
     try:
         while(True):
-            contact_obj = add_Contact()
-            contacts_list.append(contact_obj)
+            #contact_obj = add_Contact()
+            #contacts_list.append(contact_obj)
             contacts_add_choice = input("Enter \"Y\" for adding more & \"N\" to stop adding: ")
             if (contacts_add_choice.upper() == "N"):
                 break
@@ -100,3 +102,70 @@ if __name__=="__main__":
         Editing_contacts(contacts_list)
     for item in contacts_list:
         print(str(item))
+    contact1 = {}
+    contact1 = AddressBook()
+    addressBookDict = {}
+    contactIndex = 1
+    contactDict = [contactIndex]
+
+    def contactMenu():
+         pass
+
+    while True:
+        addressbookCheck = int(input("""
+                    1. Press 1 to Add AddressBook
+                    2. Press 2 to Show AddressBook
+                    3. Press 3 to Add Contacts in AddressBook
+                    4. Press 4 To Exit
+            """))
+        
+        if addressbookCheck == 1:
+            addressBookName = input("Enter Name Of AddressBook!")
+            addressBookDict.update({addressBookName:""})
+            contactIndex += 1
+            contactDict = {}
+
+        elif addressbookCheck == 2:
+            print(addressBookDict)
+
+        elif addressbookCheck == 3:
+            print("All AddressBook Names: ",addressBookDict.keys())
+            checkFlag = False
+            while True:
+                checkName = input("Enter Name Of Address Book!")
+                for i in addressBookDict.keys():
+                    contactListF = []
+                    if checkName == i:
+
+                        while True:  
+                            checkValue = int(input("""
+                                    1. Enter 1 To Add Contacts Details
+                                    2. Enter 2 To Exit
+                            """))
+
+                            if checkValue == 1:
+                                fName = input("Enter First Name: ")
+                                lName = input("Enter Last Name: ")
+                                address = input("Enter Address: ")
+                                city = input("Enter City: ")
+                                state = input("Enter State: ")
+                                zip = int(input("Enter Zip Code: "))
+                                phoneNumber = int(input("Enter Mobile Number: "))
+                                eMail = input("Enter E mail: ")
+
+                                contactListF.append(contact1.addContact(fName, lName, address,city, state, zip, phoneNumber, eMail))
+
+                            elif checkValue == 2:
+                                addressBookDict.update({checkName:contactListF})
+                                break
+
+                            else:
+                                print("Enter Valid Option")
+                        checkFlag = True
+                    elif checkFlag == True:
+                        break
+                if checkFlag == True:
+                    break 
+                elif checkFlag == False:
+                    print("Enter valid AddressBook Name!")
+            break
